@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="zitec_emkp" translate="label" sortOrder="10">
+            <label>eMAG Marketplace</label>
+        </tab>
+        <section id="api_settings" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>API Settings</label>
+            <tab>zitec_emkp</tab>
+            <resource>Zitec_EmagMarketplace::api_configuration</resource>
+            <group id="api_group" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>eMAG Marketplace</label>
+                <field id="disclaimer" translate="label" type="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>IMPORTANT - READ CAREFULLY!</label>
+                    <comment><![CDATA[
+                        <p>
+                            This license and disclaimer statement constitutes a legal agreement ("License Agreement") between you (either as an
+                            individual or a single entity) and eMAG (Dante International S.A., for this software product ("Software"), including any
+                            software, media, and accompanying on-line or printed documentation.
+                        </p>
+                        <p>
+                            BY DOWNLOADING, INSTALLING, COPYING, OR OTHERWISE USING THE SOFTWARE, YOU AGREE TO BE BOUND BY ALL OF THE TERMS AND
+                            CONDITIONS OF THIS LICENSE AND DISCLAIMER AGREEMENT. If you do not agree with the terms and conditions of this agreement,
+                            you must promptly cease all use of the software and destroy all copies of this software and all of its component parts in
+                            your possession or under your control.
+                        </p>
+                        <p>
+                            <ul>
+                                <li>
+                                    This software is freeware. You can use this software for commercial purposes, to integrate your store with the eMAG
+                                    Marketplace vendor platform. Use of the software in other purposes than integrating your store with eMAG is forbidden,
+                                    and you will bear all the legal consequences.
+                                </li>
+                                <li>
+                                    This Software is owned by eMAG and is protected by copyright law and international copyright treaty. Therefore, you must
+                                    treat this Software like any other copyrighted material (e.g. books).
+                                </li>
+                                <li>
+                                    In no event shall the author be liable for any damages whatsoever (including, without limitation, damages for loss of
+                                    business profits, business interruption, loss of business information, or other pecuniary loss) arising out of the use
+                                    of or inability to use this software or documentation, even if the author has been advised of the possibility of such
+                                    damages.
+                                </li>
+                            </ul>
+                        </p>
+                    ]]>
+                    </comment>
+                </field>
+                <field id="api_url" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\ApiEndpoints</source_model>
+                    <label>Country</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="api_username" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Username</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="api_password" translate="label" type="password" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Password</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="locale" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\Locale</source_model>
+                    <label>Locale</label>
+                </field>
+                <field id="currency" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\Currency</source_model>
+                    <label>Currency</label>
+                </field>
+            </group>
+        </section>
+        <section id="products_settings" translate="label" sortOrder="120" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Product Settings</label>
+            <tab>zitec_emkp</tab>
+            <resource>Zitec_EmagMarketplace::products_settings</resource>
+            <group id="products_group" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Products Settings</label>
+                <field id="queue_limit" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Queue Limit</label>
+                    <validate>required-entry validate-number</validate>
+                </field>
+                <field id="handling_time" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Handling Time</label>
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\HandlingTime</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="vat_rate" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Vat Rate</label>
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\Vat</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="min_sale_price" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Min Sale Price (percentage)</label>
+                    <validate>required-entry validate-number</validate>
+                </field>
+                <field id="max_sale_price" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Max Sale Price (percentage)</label>
+                    <validate>required-entry validate-number</validate>
+                </field>
+            </group>
+        </section>
+        <section id="orders_settings" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Order Settings</label>
+            <tab>zitec_emkp</tab>
+            <resource>Zitec_EmagMarketplace::orders_settings</resource>
+            <group id="orders_group" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Order Settings</label>
+                <field id="initial_order_status" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Initial Order Status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="finalized_order_status" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Finalized Order Status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="cancelled_order_status" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Canceled Order Status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+        <section id="payments_settings" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Payments Settings</label>
+            <tab>zitec_emkp</tab>
+            <resource>Zitec_EmagMarketplace::payments_settings</resource>
+            <group id="payments_group" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Payments Settings</label>
+                <field id="cash_on_delivery" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Cash on delivery</label>
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\ActivePaymentMethods</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="bank_transfer" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Bank Transfer</label>
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\ActivePaymentMethods</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="online_card_payment" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Online Card Payment</label>
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\ActivePaymentMethods</source_model>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+        <section id="shipping_settings" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Shipping Settings</label>
+            <tab>zitec_emkp</tab>
+            <resource>Zitec_EmagMarketplace::shipping_settings</resource>
+            <group id="shipping_group" translate="label" type="select" sortOrder="10" showInDefault="1"
+                   showInWebsite="0"
+                   showInStore="0">
+                <label>Shipping Settings</label>
+                <field id="method" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Shipping Method</label>
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\ActiveShippingMethods</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="name" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Name</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Zitec\EmagMarketplace\Block\System\Config\Form\Field\Disabled</frontend_model>
+                </field>
+                <field id="contact_person" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Contact Person</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Zitec\EmagMarketplace\Block\System\Config\Form\Field\Disabled</frontend_model>
+                </field>
+                <field id="phone_number1" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Phone Number 1</label>
+                    <comment>If you wish to generate AWBs using an eMag Marketplace Courier account, this field is required</comment>
+                </field>
+                <field id="phone_number2" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Phone Number 2</label>
+                </field>
+                <field id="locality" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Locality</label>
+                    <source_model>Zitec\EmagMarketplace\Model\Config\Source\Locality</source_model>
+                    <frontend_model>Zitec\EmagMarketplace\Block\System\Config\Form\Field\Locality</frontend_model>
+                    <comment>If you wish to generate AWBs using an eMag Marketplace Courier account, this field is required</comment>
+                </field>
+                <field id="street" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Street</label>
+                    <comment>If you wish to generate AWBs using an eMag Marketplace Courier account, this field is required</comment>
+                </field>
+                <field id="zipcode" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Zipcode</label>
+                    <frontend_model>Zitec\EmagMarketplace\Block\System\Config\Form\Field\Disabled</frontend_model>
+                </field>
+                <field id="import_localities" translate="label" type="button" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <frontend_model>Zitec\EmagMarketplace\Block\System\Config\Form\ImportLocalitiesButton</frontend_model>
+                </field>
+            </group>
+        </section>
+        <section id="alerts_settings" translate="label" sortOrder="160" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Alerts Settings</label>
+            <tab>zitec_emkp</tab>
+            <resource>Zitec_EmagMarketplace::alerts_settings</resource>
+            <group id="alerts_group" translate="label,comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Alerts Settings</label>
+                <field id="api_error_email" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>API Error Email</label>
+                    <comment>You can add multiple email addresses, separated by comma.</comment>
+                    <backend_model>Zitec\EmagMarketplace\Model\Config\Backend\AlertEmail</backend_model>
+                </field>
+                <field id="import_error_email" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Import Order Email</label>
+                    <backend_model>Zitec\EmagMarketplace\Model\Config\Backend\AlertEmail</backend_model>
+                    <comment>You can add multiple email addresses, separated by comma.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

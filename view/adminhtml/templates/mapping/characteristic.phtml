@@ -1,0 +1,94 @@
+<?php /** @var \Zitec\EmagMarketplace\Block\Adminhtml\Mapping\Edit\Characteristic\Form $block */ ?>
+<style>
+    .emkp-admin__field {
+        padding-top: 25px;
+        clear: both;
+    }
+
+    .emkp-admin__field-label {
+        width: calc((100%) * 0.25 - 53px);
+        float: left;
+        margin-left: 30px;
+    }
+
+    .emkp-admin__field-control {
+        width: calc((100%) * 0.5 - 30px);
+        float: left;
+        margin-left: 30px;
+    }
+
+    .display-values-link {
+        margin-top: 1rem;
+    }
+
+    .emkp-admin__field-control select,
+    .emkp-admin__field-control .js-emkp-mapping-error {
+        width: 350px;
+    }
+
+    .js-emkp-mapping-error {
+        display: none;
+    }
+</style>
+<div id="emkp_characterisics_div">
+    <?php foreach ($block->getCharacteristics() as $characteristic) { ?>
+        <?php
+        $labelId = 'characteristic_label_' . $characteristic->getId();
+        $isMandatory = $characteristic->isMandatory();
+        ?>
+        <!-- div -->
+        <div class="admin__field <?php if ($isMandatory) { ?> _required<?php } ?> emkp-admin__field">
+            <label class="admin__field-label emkp-admin__field-label" for="<?= $labelId; ?>">
+                <span><?= $characteristic->getName(); ?></span>
+            </label>
+
+            <!-- div -->
+            <div class="admin__field-control emkp-admin__field-control">
+                <!-- select -->
+                <select class="admin__control-select js-emkp-mapping-input"
+                        name="characteristic[<?= $characteristic->getId(); ?>]" id="<?= $labelId; ?>"
+                        aria-describedby="notice-<?= $labelId; ?>" <?php if ($isMandatory) { ?> required<?php } ?>>
+                    <option data-title="<?= __('Select attribute'); ?>" value="0" selected disabled>
+                        <?= __('Select attribute'); ?>
+                    </option>
+
+                    <!-- option -->
+                    <?php foreach ($this->getMagentoAttributes() as $attribute) { ?>
+                        <option data-title="<?= $attribute->getDefaultFrontendLabel(); ?>"
+                                value="<?= $attribute->getId(); ?>"
+                            <?php if ($this->isAttributeSelected($characteristic->getId(),
+                                $attribute->getId())) : ?> selected<?php endif ?>
+                        >
+                            <?= $attribute->getDefaultFrontendLabel(); ?>
+                        </option>
+                    <?php } ?>
+                </select>
+
+                <!-- label -->
+                <label class="admin__field-error js-emkp-mapping-error">
+                    <?php echo __('This is a required field.'); ?>
+                </label>
+
+                <?php if (!empty($characteristic->getValues())): ?>
+                    <div class="admin__field">
+                        <div class="admin__field-control">
+                            <button type="button"
+                                    data-values-url='<?php echo $block->getValuesUrl(); ?>'
+                                    data-characteristic-id='<?php echo $characteristic->getId(); ?>'
+                                    class="action-additional display-values-link js-emkp-show-allowed-values"
+                            >
+                                <span data-bind="text: title">
+                                    <?php if (!$characteristic->getAllowNewValue()): ?>
+                                        <?php echo __('This characteristic does not allow new values.') ?>
+                                    <?php endif ?>
+                                    <?php echo __('Click here to show values.'); ?>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+        </div>
+    <?php } ?>
+</div>

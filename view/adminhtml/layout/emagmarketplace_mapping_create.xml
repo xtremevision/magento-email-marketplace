@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Zitec_EmagMarketplace::js/mapping-create.js"/>
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="Zitec\EmagMarketplace\Block\Adminhtml\Mapping\Edit\FormWrapper"
+                   name="buttons_top" template="Zitec_EmagMarketplace::mapping/form-wrapper.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">top</argument>
+                </arguments>
+            </block>
+
+            <uiComponent name="mapping_create_form"/>
+
+            <block class="Zitec\EmagMarketplace\Block\Adminhtml\Mapping\Edit\FormWrapper"
+                   name="buttons_bottom" template="Zitec_EmagMarketplace::mapping/form-wrapper.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">bottom</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

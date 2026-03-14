@@ -1,0 +1,3 @@
+[submodule "automation"]
+	path = automation
+	url = ssh://git@git.zitec.ro:6246/emag-marketplace-integrator/m2mod-automation.git

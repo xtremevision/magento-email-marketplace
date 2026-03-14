@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_api_settings">
+        <observer name="zitec_emkp_admin_system_config_changed_section_api_settings"
+                  instance="Zitec\EmagMarketplace\Observer\Config\ApiObserver"/>
+    </event>
+
+    <event name="catalog_product_save_after">
+        <observer name="emkp_add_product_to_queue_save_after"
+                  instance="Zitec\EmagMarketplace\Observer\AddProductToQueue"/>
+    </event>
+
+    <event name="catalog_product_delete_before">
+        <observer name="emkp_add_product_to_queue_delete_before"
+                  instance="Zitec\EmagMarketplace\Observer\AddProductToQueue"/>
+    </event>
+
+    <event name="cataloginventory_stock_item_save_after">
+        <observer name="emkp_add_product_to_queue_on_stock_update"
+                  instance="Zitec\EmagMarketplace\Observer\AddProductToQueue"/>
+    </event>
+
+    <event name="checkout_submit_all_after">
+        <observer name="emkp_add_product_to_queue_on_place_order"
+                  instance="Zitec\EmagMarketplace\Observer\AddProductToQueue"/>
+    </event>
+
+    <event name="catalog_product_attribute_update_before">
+        <observer name="emkp_add_product_to_queue_on_multi_save"
+                  instance="Zitec\EmagMarketplace\Observer\AddProductToQueue"/>
+    </event>
+
+    <event name="clean_cache_by_tags">
+        <observer name="emkp_add_special_price_products_to_queue_by_tags_reindex"
+                  instance="Zitec\EmagMarketplace\Observer\AddProductToQueue"/>
+    </event>
+
+    <event name="clean_cache_after_reindex">
+        <observer name="emkp_add_special_price_products_to_queue_after_reindex"
+                  instance="Zitec\EmagMarketplace\Observer\AddProductToQueue"/>
+    </event>
+
+    <event name="sales_order_save_before">
+        <observer name="emkp_sales_order_save_before_edit_emag_order"
+                  instance="Zitec\EmagMarketplace\Observer\EditEmagOrder"/>
+    </event>
+
+    <event name="sales_order_save_after">
+        <observer name="emkp_sales_order_save_after_edit_emag_order"
+                  instance="Zitec\EmagMarketplace\Observer\EditEmagOrderAfter"/>
+    </event>
+    
+    <event name="catalog_product_save_before">
+        <observer name="emkp_product_save_before_verify_values"
+                  instance="Zitec\EmagMarketplace\Observer\VerifyProductAllowedValues"/>
+    </event>
+
+</config>

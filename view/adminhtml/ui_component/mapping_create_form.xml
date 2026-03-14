@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mapping_create_form.category_mapping_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Manage Mapping</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="back" class="Zitec\EmagMarketplace\Block\Adminhtml\Button\Back"/>
+            <button name="fake-save-btn" class="Zitec\EmagMarketplace\Block\Adminhtml\Mapping\Edit\Button\Save"/>
+        </buttons>
+        <namespace>mapping_create_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>mapping_create_form.category_mapping_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="category_mapping_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+        </settings>
+        <dataProvider class="Zitec\EmagMarketplace\Model\CategoryMapping\DataProvider"
+                      name="category_mapping_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="category" sortOrder="10">
+        <settings>
+            <collapsible>false</collapsible>
+            <label translate="true">Category Mapping</label>
+        </settings>
+
+        <field name="id" formElement="hidden">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">category</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+
+        <htmlContent name="category_form">
+            <block class="Zitec\EmagMarketplace\Block\Adminhtml\Mapping\Edit\Form\Category"
+                   name="ca_form_block" template="Zitec_EmagMarketplace::mapping/category.phtml"/>
+        </htmlContent>
+    </fieldset>
+
+    <fieldset name="characteristic" sortOrder="20">
+        <settings>
+            <collapsible>false</collapsible>
+            <label translate="true">Characteristic Mapping</label>
+        </settings>
+
+        <htmlContent name="characteristic_form">
+            <block class="Zitec\EmagMarketplace\Block\Adminhtml\Mapping\Edit\Form\Characteristic"
+                   name="ch_form_block" template="Zitec_EmagMarketplace::mapping/characteristic.phtml"/>
+        </htmlContent>
+    </fieldset>
+</form>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Zitec_EmagMarketplace::css/select2.min.css"/>
+        <script src="Zitec_EmagMarketplace::js/awb-create.js"/>
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="Zitec\EmagMarketplace\Block\Adminhtml\Awb\Create\LocalitiesUrl"
+                   name="localities_url_block" template="Zitec_EmagMarketplace::awb/localities-url.phtml"/>
+            <uiComponent name="awb_create_form"/>
+        </referenceContainer>
+    </body>
+</page>

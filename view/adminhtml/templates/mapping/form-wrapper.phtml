@@ -1,0 +1,14 @@
+<?php /** @var \Zitec\EmagMarketplace\Block\Adminhtml\Mapping\Edit\FormWrapper $this */ ?>
+
+<?php if ($this->getType() === 'top') { ?>
+    <script>
+        window.emkp_mapping_categories_url = '<?php echo $this->getCharacteristicsUrl(); ?>';
+        window.emkp_save_mapping_url = '<?php echo $this->getSaveUrl(); ?>'
+    </script>
+<form id="js-mapping-form">
+    <?php } ?>
+
+    <?php if ($this->getType() === 'bottom'){ ?>
+</form>
+
+<?php } ?>

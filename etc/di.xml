@@ -1,0 +1,144 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Zitec\EmagMarketplace\Model\Logger\RequestLoggerHandler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Zitec\EmagMarketplace\Model\Logger\CustomLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">emkp_request_logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">\Zitec\EmagMarketplace\Model\Logger\RequestLoggerHandler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="locality_import" xsi:type="object">Zitec\EmagMarketplace\Console\Command\Locality\Import</item>
+                <item name="order_import" xsi:type="object">Zitec\EmagMarketplace\Console\Command\Order\Import</item>
+                <item name="product_read" xsi:type="object">Zitec\EmagMarketplace\Console\Command\Product\Read</item>
+                <item name="product_send" xsi:type="object">Zitec\EmagMarketplace\Console\Command\Product\Send</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <preference for="Zitec\EmagMarketplace\Api\VatRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\VatRepository"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\HandlingTimeRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\HandlingTimeRepository"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\CourierRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\CourierRepository"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\LocalityRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\LocalityRepository"/>
+
+    <preference for="Zitec\EmagMarketplace\ApiWrapper\AlertManager\AlertManagerInterface"
+                type="Zitec\EmagMarketplace\Model\AlertManager"/>
+
+    <preference for="Zitec\EmagMarketplace\ApiWrapper\Logger\LoggerInterface"
+                type="Zitec\EmagMarketplace\Model\Logger\RequestLogger"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\CategoryRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\CategoryRepository"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\CharacteristicRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\CharacteristicRepository"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\CategoryMappingRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\CategoryMappingRepository"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\CharacteristicMappingRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\CharacteristicMappingRepository"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\QueueProductRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\Queue\Product\Repository"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\QueueOrderRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\Queue\Order\Repository"/>
+
+    <preference for="Zitec\EmagMarketplace\Api\AwbRepositoryInterface"
+                type="Zitec\EmagMarketplace\Model\AwbRepository"/>
+
+    <preference for="Magento\Eav\Model\Entity\Attribute\Source\Table"
+                type="Zitec\EmagMarketplace\Model\Entity\Attribute\Source\Table"/>
+
+    <type name="Zitec\EmagMarketplace\Model\ResourceModel\CategoryMapping\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">
+                zitec_emkp_category_mapping
+            </argument>
+            <argument name="eventPrefix" xsi:type="string">
+                zitec_emkp_category_mapping_grid_collection
+            </argument>
+            <argument name="eventObject" xsi:type="string">
+                zitec_emkp_category_mapping_records_collection
+            </argument>
+            <argument name="resourceModel" xsi:type="string">
+                Zitec\EmagMarketplace\Model\ResourceModel\Category
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="grid_mapping_index_data_source" xsi:type="string">
+                    Zitec\EmagMarketplace\Model\ResourceModel\CategoryMapping\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <type name="Zitec\EmagMarketplace\Model\ResourceModel\Awb\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">
+                zitec_emkp_awbs
+            </argument>
+            <argument name="eventPrefix" xsi:type="string">
+                zitec_emkp_awb_grid_collection
+            </argument>
+            <argument name="eventObject" xsi:type="string">
+                zitec_emkp_awb_records_collection
+            </argument>
+            <argument name="resourceModel" xsi:type="string">
+                Zitec\EmagMarketplace\Model\ResourceModel\Awb
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sales_order_view_awb_grid_data_source" xsi:type="string">
+                    Zitec\EmagMarketplace\Model\ResourceModel\Awb\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\SalesRule\Model\Validator">
+        <plugin name="skip-rule-validation" type="Zitec\EmagMarketplace\Plugin\SalesRuleValidator"/>
+    </type>
+    <type name="Magento\SalesRule\Model\Utility">
+        <plugin name="skip-rule-validation-shipping" type="Zitec\EmagMarketplace\Plugin\SalesShippingRuleValidator"/>
+    </type>
+
+    <type name="Magento\Sales\Block\Adminhtml\Order\View">
+        <plugin name="addAwbGenerateButton" type="Zitec\EmagMarketplace\Plugin\AddAwbGenerateButton"/>
+    </type>
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="emkp_emag_order_id" xsi:type="string">sales_order.emkp_emag_order_id</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

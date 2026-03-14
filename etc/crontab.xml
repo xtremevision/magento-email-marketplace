@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="zitec_emagmarketplace_send_products" instance="Zitec\EmagMarketplace\Cron\ProcessProducts"
+             method="execute">
+            <schedule>2,17,32,47 * * * *</schedule>
+        </job>
+        <job name="zitec_emagmarketplace_read_products_status" instance="Zitec\EmagMarketplace\Cron\ReadProductStatus"
+             method="execute">
+            <schedule>56 * * * *</schedule>
+        </job>
+        <job name="zitec_emagmarketplace_import_orders" instance="Zitec\EmagMarketplace\Cron\ImportOrders"
+             method="execute">
+            <schedule>7,22,37,52 * * * *</schedule>
+        </job>
+        <job name="zitec_emagmarketplace_import_localities" instance="Zitec\EmagMarketplace\Cron\ImportLocalities"
+             method="execute">
+            <schedule>6 4 * * 1</schedule>
+        </job>
+    </group>
+</config>

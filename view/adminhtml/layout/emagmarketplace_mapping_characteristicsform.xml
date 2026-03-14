@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <container name="root">
+        <block class="Zitec\EmagMarketplace\Block\Adminhtml\Mapping\Edit\Form\Characteristic"
+               name="characteristic_block" template="Zitec_EmagMarketplace::mapping/characteristic.phtml"/>
+    </container>
+</page>

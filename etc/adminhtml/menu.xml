@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Zitec_EmagMarketplace::emkp"
+             title="Emag Marketplace"
+             module="Zitec_EmagMarketplace"
+             sortOrder="99"
+             resource="Zitec_EmagMarketplace::emkp"/>
+
+        <add id="Zitec_EmagMarketplace::mapping"
+             title="Category &amp; Characteristics Mappings"
+             module="Zitec_EmagMarketplace"
+             sortOrder="0"
+             action="emagmarketplace/mapping/index"
+             parent="Zitec_EmagMarketplace::emkp"
+             resource="Zitec_EmagMarketplace::mapping"/>
+
+    </menu>
+</config>

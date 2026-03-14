@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <api_settings>
+            <settings>
+                <enable>1</enable>
+                <display_text>API Settings</display_text>
+            </settings>
+        </api_settings>
+        <shipping_settings>
+            <shipping_group>
+                <name>AUTO-GENERATED</name>
+                <contact_person>AUTO-GENERATED</contact_person>
+                <zipcode>AUTO-GENERATED</zipcode>
+            </shipping_group>
+        </shipping_settings>
+    </default>
+</config>
