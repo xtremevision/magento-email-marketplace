@@ -73,7 +73,8 @@ class Save extends Action
     {
         $response = $this->jsonResponseFactory->create();
 
-        $id = $this->getRequest()->getParam('id') ?: 0;
+        $id = $this->getRequest()->getParam('id');
+        $id = $id !== null && $id !== '' ? (int)$id : null;
         $emagCategoryId = $this->getRequest()->getParam('emag_category_id');
         $magentoCategoryId = $this->getRequest()->getParam('magento_category_id');
         $characteristics = $this->getRequest()->getParam('characteristic', []);
@@ -90,7 +91,7 @@ class Save extends Action
             
             $this->dataImporter->importCharactersticsByCategoryId($emagCategory->getEmagId());
             
-            $mapping = $this->mappingManager->save($id, $emagCategoryId, $magentoCategoryId, $characteristics);
+            $mapping = $this->mappingManager->save((int)$emagCategoryId, (int)$magentoCategoryId, $characteristics, $id);
             
             $response->setData([
                 'error' => false,

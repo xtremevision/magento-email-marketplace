@@ -89,7 +89,7 @@ class CategoryMappingRepository implements CategoryMappingRepositoryInterface
     /**
      * {@inheritDoc}
      */
-    public function save($id = null, int $emagCategoryId, int $magentoCategoryId)
+    public function save(int $emagCategoryId, int $magentoCategoryId, ?int $id = null)
     {
         /** @var CategoryMapping $mapping */
         $mapping = $this->factory->create();
@@ -103,7 +103,7 @@ class CategoryMappingRepository implements CategoryMappingRepositoryInterface
         } catch (NoSuchEntityException $exception) {
         }
 
-        if ($id) {
+        if ($id !== null) {
             try {
                 $mapping = $this->getById($id);
             } catch (\Throwable $exception) {

@@ -28,15 +28,15 @@ interface CategoryMappingRepositoryInterface
     public function getAll(): Collection;
 
     /**
-     * @param int|null $id
      * @param int $emagCategoryId
      * @param int $magentoCategoryId
+     * @param int|null $id
      * @return bool|CategoryMappingInterface
      * @throws DuplicateMappingException
      * @throws MissingRequiredCharacteristicsException
      * @throws NoSuchEntityException
      */
-    public function save($id = null, int $emagCategoryId, int $magentoCategoryId);
+    public function save(int $emagCategoryId, int $magentoCategoryId, ?int $id = null);
 
     /**
      * @param int $id

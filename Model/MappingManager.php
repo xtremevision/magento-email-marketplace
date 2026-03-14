@@ -79,10 +79,10 @@ class MappingManager
     }
 
     /**
-     * @param int|null $id
      * @param int $emagCategoryId
      * @param int $magentoCategoryId
      * @param array $characteristics
+     * @param int|null $id
      * @return bool|CategoryMappingInterface
      * @throws DuplicateMappingException
      * @throws GeneralCategoryMappingSaveException
@@ -92,11 +92,11 @@ class MappingManager
      * @throws \Exception
      * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
-    public function save($id = null, int $emagCategoryId, int $magentoCategoryId, array $characteristics)
+    public function save(int $emagCategoryId, int $magentoCategoryId, array $characteristics, ?int $id = null)
     {
         $this->validateData($emagCategoryId, $magentoCategoryId, $characteristics);
 
-        $mapping = $this->categoryMappingRepository->save($id, $emagCategoryId, $magentoCategoryId);
+        $mapping = $this->categoryMappingRepository->save($emagCategoryId, $magentoCategoryId, $id);
 
         if (!$mapping) {
             throw new GeneralCategoryMappingSaveException(__('An error occurred. Please check logs and try again.'));
